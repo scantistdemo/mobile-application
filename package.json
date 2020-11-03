@@ -12,7 +12,20 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint . --ext .ts,.tsx,.mdx --max-warnings 0",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "sonar" : "node sonar.js"
+  }, 
+  "jest": {
+      "testEnvironment":  "node",
+      "coveragePathIgnorePatterns": [
+          "/node_modules/"
+      ],
+      "testResultsProcessor":  "jest-sonar-reporter"
+  },
+  "jestSonar": {
+      "reportPath":  "coverage",
+      "reportFile":  "test-reporter.xml",
+      "indent":  4
   },
   "dependencies": {
     "@types/lodash": "^4.14.161",
@@ -80,10 +93,13 @@
     "eslint-plugin-react-hooks": "^4.1.2",
     "i18n-js": "^3.7.1",
     "jest": "^26.1.0",
+    "jest-sonar-reporter": "^2.0.0",
     "prettier": "^2.0.5",
     "react-dom": "16.11.0",
     "react-native-svg-transformer": "^0.14.3",
     "react-test-renderer": "^16.12.0",
+    "sonarqube-scanner": "^2.7.0",
+    "supertest": "^6.0.0",
     "typescript": "~3.9.5"
   },
   "private": true
