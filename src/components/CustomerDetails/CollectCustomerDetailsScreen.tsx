@@ -247,6 +247,14 @@ const CollectCustomerDetailsScreen: FunctionComponent<NavigationFocusInjectedPro
     navigation.navigate("DailyStatisticsScreen");
   };
 
+  const getBarcodeType = (): any[] => {
+    if (selectedIdType.scannerType === "QR")
+      return [BarCodeScanner.Constants.BarCodeType.qr];
+    else if (selectedIdType.scannerType === "CODE_39")
+      return [BarCodeScanner.Constants.BarCodeType.code39];
+    else return [null];
+  };
+
   const tCampaignName = c13nt(features?.campaignName ?? "");
 
   return (
@@ -315,7 +323,7 @@ const CollectCustomerDetailsScreen: FunctionComponent<NavigationFocusInjectedPro
           isScanningEnabled={isScanningEnabled}
           onBarCodeScanned={onBarCodeScanned}
           onCancel={() => setShouldShowCamera(false)}
-          barCodeTypes={
+          barCodeTypes={getBarcodeType()}
             selectedIdType.label === "Passport"
               ? features?.alternateIds &&
                 features?.alternateIds.length > 0 &&
